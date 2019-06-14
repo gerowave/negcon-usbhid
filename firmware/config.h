@@ -7,9 +7,9 @@
 /* ------------------------------------------------------------------------- */
 
 /* PSパッドの信号線を接続するポート(x of PORTx, PINx, DDRx) */
-#define PS_CFG_IOPORTNAME B
+#define PS_CFG_IOPORTNAME C
 /* DATに接続されているポートのビット位置 */
-#define PS_CFG_DAT_BIT 0
+#define PS_CFG_DAT_BIT 2
 /* CMDに接続されているポートのビット位置 */
 #define PS_CFG_CMD_BIT 5
 /* SELに接続されているポートのビット位置 */

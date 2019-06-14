@@ -14,12 +14,31 @@
 #                is connected.
 # FUSES ........ Parameters for avrdude to flash the fuses appropriately.
 
-DEVICE     = atmega88p
-CLOCK      = 12800000
+DEVICE     = atmega8
+CLOCK      = 16000000
 PROGRAMMER = -c diecimila -P ft0 -B 38400
 OBJECTS    = main.o hid.o psif.o setting.o \
 	usbdrv/usbdrv.o usbdrv/usbdrvasm.o usbdrv/oddebug.o
-FUSES      = -U hfuse:w:0xdf:m -U lfuse:w:0xe2:m
+FUSES      = -U hfuse:w:0xc9:m -Ulfuse:w:0x9f:m
+# ATMega8 fuse bits (fuse bits for other devices are different!):
+# Fuse high byte:
+# 0xc9 = 1 1 0 0   1 0 0 1 <-- BOOTRST (boot reset vector at 0x0000)
+#        ^ ^ ^ ^   ^ ^ ^------ BOOTSZ0
+#        | | | |   | +-------- BOOTSZ1
+#        | | | |   + --------- EESAVE (don't preserve EEPROM over chip erase)
+#        | | | +-------------- CKOPT (full output swing)
+#        | | +---------------- SPIEN (allow serial programming)
+#        | +------------------ WDTON (WDT not always on)
+#        +-------------------- RSTDISBL (reset pin is enabled)
+# Fuse low byte:
+# 0x9f = 1 0 0 1   1 1 1 1
+#        ^ ^ \ /   \--+--/
+#        | |  |       +------- CKSEL 3..0 (external >8M crystal)
+#        | |  +--------------- SUT 1..0 (crystal osc, BOD enabled)
+#        | +------------------ BODEN (BrownOut Detector enabled)
+#        +-------------------- BODLEVEL (2.7V)
+
+
 # ATMega88p fuse bits (fuse bits for other devices are different!):
 # Example for 8 MHz internal oscillator
 # Fuse high byte:

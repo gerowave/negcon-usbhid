@@ -6,7 +6,7 @@
 #include "hid_intern.h"
 
 /* USB report descriptor, size must match usbconfig.h */
-PROGMEM char usbHidReportDescriptor[68] = {
+PROGMEM const char usbHidReportDescriptor[68] = {
   G_USAGE_PAGE(1), 0x01,        /* Generic Desktop */
   L_USAGE(1), 0x04,             /* Joystick */
   M_COLLECTION(1), C_APPLICATION,
