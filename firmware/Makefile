@@ -14,12 +14,12 @@
 #                is connected.
 # FUSES ........ Parameters for avrdude to flash the fuses appropriately.
 
-DEVICE     = atmega8
+DEVICE     = atmega88p
 CLOCK      = 16000000
 PROGRAMMER = -c diecimila -P ft0 -B 38400
 OBJECTS    = main.o hid.o psif.o setting.o \
 	usbdrv/usbdrv.o usbdrv/usbdrvasm.o usbdrv/oddebug.o
-FUSES      = -U hfuse:w:0xc9:m -Ulfuse:w:0x9f:m
+FUSES      = -U hfuse:w:0xdf:m -Ulfuse:w:0xe2:m
 # ATMega8 fuse bits (fuse bits for other devices are different!):
 # Fuse high byte:
 # 0xc9 = 1 1 0 0   1 0 0 1 <-- BOOTRST (boot reset vector at 0x0000)
