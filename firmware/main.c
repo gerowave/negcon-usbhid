@@ -286,7 +286,7 @@ int __attribute__((noreturn)) main(void)
 {
     wdt_enable(WDTO_1S);
 
-//    TCCR0B = 3;                 /* required by osctune.h */
+    TCCR0B = 3;                 /* required by osctune.h */
 
     setting_init();
 
